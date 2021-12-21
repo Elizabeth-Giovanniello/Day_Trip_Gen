@@ -97,7 +97,7 @@ def confirm_choice(list, category_sing, result):
 #we will choose the destination first so that the transport/restaurant/entertainment options can be destination-specific
 def generate_destination(destinations):
     destination = random.choice(destinations)
-    destination = confirm_choice(destinations, "destination", destination)
+    destination = confirm_choice(destinations[:], "destination", destination)
     return destination
 
 
@@ -109,21 +109,21 @@ def generate_destination(destinations):
 
 def generate_transport(destination, all_transport):
     if destination == "Hawaii":
-        transp_list = all_transport[0]
+        transp_list = all_transport[0][:]
     elif destination == "New York City":
-        transp_list = all_transport[1]
+        transp_list = all_transport[1][:]
     elif destination == "Yellowstone National Park":
-        transp_list = all_transport[2]
+        transp_list = all_transport[2][:]
     elif destination == "the Bahamas":
-        transp_list = all_transport[3]
+        transp_list = all_transport[3][:]
     elif destination == "Siberia":
-        transp_list = all_transport[4]
+        transp_list = all_transport[4][:]
     elif destination == "Tokyo":
-        transp_list = all_transport[5]
+        transp_list = all_transport[5][:]
     elif destination == "Venice":
-        transp_list = all_transport[6]
+        transp_list = all_transport[6][:]
     else:
-        transp_list = all_transport[7]
+        transp_list = all_transport[7][:]
     transport = random.choice(transp_list)
     transport = confirm_choice(transp_list, "transportation option", transport)
     return transport
@@ -133,21 +133,21 @@ def generate_transport(destination, all_transport):
 
 def generate_entertainment(destination, all_entertainment):
     if destination == "Hawaii":
-        ent_list = all_entertainment[0]
+        ent_list = all_entertainment[0][:]
     elif destination == "New York City":
-        ent_list = all_entertainment[1]
+        ent_list = all_entertainment[1][:]
     elif destination == "Yellowstone National Park":
-        ent_list = all_entertainment[2]
+        ent_list = all_entertainment[2][:]
     elif destination == "the Bahamas":
-        ent_list = all_entertainment[3]
+        ent_list = all_entertainment[3][:]
     elif destination == "Siberia":
-        ent_list = all_entertainment[4]
+        ent_list = all_entertainment[4][:]
     elif destination == "Tokyo":
-        ent_list = all_entertainment[5]
+        ent_list = all_entertainment[5][:]
     elif destination == "Venice":
-        ent_list = all_entertainment[6]
+        ent_list = all_entertainment[6][:]
     else:
-        ent_list = all_entertainment[7]
+        ent_list = all_entertainment[7][:]
     entertainment = random.choice(ent_list)
     entertainment = confirm_choice(ent_list, "entertainment option", entertainment)
     return entertainment
@@ -155,21 +155,21 @@ def generate_entertainment(destination, all_entertainment):
 
 def generate_restaurant(destination, all_restaurants):
     if destination == "Hawaii":
-        rest_list = all_restaurants[0]
+        rest_list = all_restaurants[0][:]
     elif destination == "New York City":
-        rest_list = all_restaurants[1]
+        rest_list = all_restaurants[1][:]
     elif destination == "Yellowstone National Park":
-        rest_list = all_restaurants[2]
+        rest_list = all_restaurants[2][:]
     elif destination == "the Bahamas":
-        rest_list = all_restaurants[3]
+        rest_list = all_restaurants[3][:]
     elif destination == "Siberia":
-        rest_list = all_restaurants[4]
+        rest_list = all_restaurants[4][:]
     elif destination == "Tokyo":
-        rest_list = all_restaurants[5]
+        rest_list = all_restaurants[5][:]
     elif destination == "Venice":
-        rest_list = all_restaurants[6]
+        rest_list = all_restaurants[6][:]
     else:
-        rest_list = all_restaurants[7]
+        rest_list = all_restaurants[7][:]
     restaurant = random.choice(rest_list)
     restaurant = confirm_choice(rest_list, "restaurant", restaurant)
     return restaurant
@@ -186,7 +186,7 @@ def finalize_trip(destination, transport, entertainment, restaurant, destination
     print(f"Restaurant: {restaurant}")
     print(f"Entertainment: {entertainment}")
     user_answer = input("Would you like to finalize this trip? Enter y/n: ").lower()
-    if user_answer != "y":
+    while user_answer != "y":
         if user_answer == "n":
             change = input("You have opted not to confirm this trip. Which aspect of the trip would you like to change? Enter d to change the destination, t to change the transportation, r to change the restaurant, e to change the entertainment, or c to confirm the current selection. ").lower()
             if change == "d":
@@ -218,3 +218,10 @@ def finalize_trip(destination, transport, entertainment, restaurant, destination
     
 
 simulation()
+
+
+#add comments for clarity
+#figure out why finalize trip function isn't having it work when you go through the list again
+#finish creating entertainment list
+#double check everything
+#double check grammar in quoted parts
