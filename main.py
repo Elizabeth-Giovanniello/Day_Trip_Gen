@@ -1,3 +1,5 @@
+# Day Trip Generator
+
 #(5 points): As a developer, I want to make at least three commits with descriptive messages.
 #(5 points): As a developer, I want to store my destinations, restaurants, mode of transportations, and entertainments in their own separate lists.
 #(5 points): As a user, I want a destination to be randomly selected for my day trip.
@@ -12,8 +14,9 @@
 
 
 
-import random
+import random #allowing us to randomly select from our lists
 
+#master function to hold all lists and call all other functions
 def simulation():
     intro_message = "Welcome to the Day Trip Generator! If you aren't sure what you want to do for your vacation, you have come to the right place!"
     print(intro_message)
@@ -27,7 +30,7 @@ def simulation():
     siberia_restaurants = ["Beerman & Pelmeni", "Tiflis", "La Maison", "Expeditsia", "Odnazhdi v Amerikye", "Puppen Haus", "Reka 827", "Vechny Zov", "Slavyansky Bazar", "Chaynaya Sinyukha"]
     tokyo_restaurants = ["Bar Benfiddich", "Kotaro", "Tamawarai", "Isetan Shinjuku", "Yakitori Imai", "Tonki", "L'Effervescence", "Butagumi", "Quintessence", "Kikunoi Akasaka", "Sushi Saito", "Ishikawa", "Kyourakutei"]
     venice_restaurants = ["Al Paradiso", "San Polo", "Alle Testiere", "Castello", "Caffe Florian", "San Marco", "Trattoria al Gatto Nero", "Al Profeta", "Antica Sacrestia", "Frary's", "Taverna La Fenice", "Osteria La Zucca", "Venissa"]
-    general_restaurants = ["McDonald's", "Subway", "Burger King", "Pizza Hut"]
+    general_restaurants = ["McDonald's", "Subway", "Burger King", "Pizza Hut"] #generic restaurants that anwywhere is likely to have, to be used when the user enter their own destination
 
     transport_options = ["bus", "commercial airplane", "boat", "unicycle", "cruise ship", "taxi", "rental car", "seaplane", "private jet", "helicopter", "walking", "uber", "swimming", "gondola", "an RV", "train"]
     hawaii_transport = [transport_options[1], transport_options[2], transport_options[4], transport_options[7], transport_options[8], transport_options[9], transport_options[12]]
@@ -37,7 +40,7 @@ def simulation():
     siberia_transport = [transport_options[1], transport_options[8], transport_options[9]]
     tokyo_transport = [transport_options[1], transport_options[2], transport_options[4], transport_options[7], transport_options[8], transport_options[9], transport_options[12]]
     venice_transport = [transport_options[1], transport_options[2], transport_options[4], transport_options[7], transport_options[8], transport_options[9], transport_options[12], transport_options[13]]
-    #maybe go back and make a distinction for continental us
+    
 
     hawaii_entertainment = ["swimming with the dolphins", "snorkeling", "hanging out at Kehena black-sand beach", "hiking at Hawaii Volcanoes National Park", "hiking to Akaka Falls", "visiting the Ho'omaluhia Botanical Garden", "surfing", "scuba diving", "attending a waterfall and rainforest hike", "whale watching"]
     nyc_entertainment = ["visiting Times Square", "seeing a show on Broadway", "visiting the Statue of Liberty", "touring Ellis Island", "partaking in a Circle Line Cruise", "attending a free walking tour of the city", "riding to the top of the Empire State Building", "exploring Chinatown and Little Italy", "strolling around Central Park", "visiting the Central Park Zoo", "seeing the Big Apple Circus"]
@@ -46,7 +49,7 @@ def simulation():
     siberia_entertainment = ["visiting Lake Baikal", "hiking in the Altai Mountains", "freezing to death", "huddling over a fire for warmth", "being interrogated by the KGB", "shopping for fur"]
     tokyo_entertainment = ["visiting the Yayoi Kusama Museum", "exploring the Shinjuku Gyoen National Garden", "visiting the Senso-ji temple", "shopping at Tsukiji Market", "admiring the cherry blossoms at Nakameguro", "spectating a Sumo tournament at Ryogoku Kokugikan", "seeing origami at Origami Kaikan"]
     venice_entertainment = ["visiting St. Mark's Basilica", "touring the Grand Canal", "roaming the canals in a gondola while being serenaded by a world-class Italian opera singer", "seeing an Italian opera at Teatro La Fenice", "exploring Piazza San Marco", "touring Palazzo Ducale", "attending a glass blowing demonstration and glass factory tour", "visiting Correr Civic Museum"]
-    general_entertainment = ["seeing a movie", "seeing a show", "attending a walking tour to explore the area", "going to all the tourist traps", "conversing with the locals", "shopping for souvenirs", "going to museums", "observing the wildlife"]
+    general_entertainment = ["seeing a movie", "seeing a show", "attending a walking tour to explore the area", "going to all the tourist traps", "conversing with the locals", "shopping for souvenirs", "going to museums", "observing the wildlife"] #generic options that could apply to anywhere, for when the user selects their own destination
 
     all_restaurants = [hawaii_restaurants, nyc_restaurants, yellowstone_restaurants, bahamas_restaurants, siberia_restaurants, tokyo_restaurants, venice_restaurants, general_restaurants]
     all_transport = [hawaii_transport, nyc_transport, yellowstone_transport, bahamas_transport, siberia_transport, tokyo_transport, venice_transport, transport_options]
@@ -61,20 +64,20 @@ def simulation():
     
 
 
-
+#function to account for every possible response the user could have to a generated option
 def confirm_choice(list, category_sing, result):
-    new_list = []
+    new_list = [] #new_list resets to empty every time the function starts over so that it does not hold duplicates
     user_confirm = input(f"We have selected {result} for your {category_sing}! Does this sound good? Enter y/n: ").lower()
-    while user_confirm != "y":
+    while user_confirm != "y": #while loop so selections continue until user has agreed on an option
             if user_confirm != "n":
              user_confirm = input("Sorry, this is not a valid entry. Please enter y or n to indicate yes or no: ").lower()
             while user_confirm == "n":
                 if list == None or len(list) == 1:
-                    user_confirm = input("Sorry, you have rejected all available options. Would you like to start over? Enter y/n: ").lower()
+                    user_confirm = input("Sorry, you have rejected all available options. Would you like to reconsider the previous selections? Enter y/n: ").lower()
                     if user_confirm == "y":
                         list.remove(result) 
                         new_list.append(result)
-                        list = new_list
+                        list = new_list #values are placed back to list so that function can run again with all options
                         return confirm_choice(list, category_sing, result)
                     while user_confirm != "y":
                         if user_confirm == "n":
@@ -84,12 +87,12 @@ def confirm_choice(list, category_sing, result):
                         else:
                             user_confirm = input("Sorry, this is not a valid entry. Please enter y or n to indicate yes or no: ").lower()
                 else:
-                    list.remove(result)
-                    new_list.append(result)
+                    list.remove(result) #remove the option offered so the user is not offered a selection they already rejected while there are still other options
+                    new_list.append(result) #values are temporarily stored in new_list so they can be re-used later
                     result = random.choice(list)
                     user_confirm = input(f"Oh, sorry you don't like this {category_sing}. No worries, we can try something else! How about {result}? Enter y/n: ").lower()
-    if user_confirm == "y":
-        print("Awesome! Glad that is decided. Let's move on!") #might change this wording later
+    if user_confirm == "y":  #yes option has to be last so that it is still run even when previous choices were rejected
+        print("Awesome! Glad that is decided. Let's move on!") 
     return result
 
 
@@ -105,11 +108,9 @@ def generate_destination(destinations):
 #instead of generating transportation options from the same list regardless of location, we will use a function that picks
 #from a list specific to the selected location, so we aren't taking a boat to siberia or driving to hawaii
 
-
-
 def generate_transport(destination, all_transport):
     if destination == "Hawaii":
-        transp_list = all_transport[0][:]
+        transp_list = all_transport[0][:]  #the list is using the contents of all_transport rather than all_transport itself, so that the variable is not modified while the confirm_choice function is run
     elif destination == "New York City":
         transp_list = all_transport[1][:]
     elif destination == "Yellowstone National Park":
@@ -130,7 +131,7 @@ def generate_transport(destination, all_transport):
 
 
 
-
+#selecting entertainment options specific to the destination, so we can include more specific offerings
 def generate_entertainment(destination, all_entertainment):
     if destination == "Hawaii":
         ent_list = all_entertainment[0][:]
@@ -152,7 +153,7 @@ def generate_entertainment(destination, all_entertainment):
     entertainment = confirm_choice(ent_list, "entertainment option", entertainment)
     return entertainment
 
-
+#selecting real restaurants in these locations, based on location. Generic restaurants are offered for user-entered location
 def generate_restaurant(destination, all_restaurants):
     if destination == "Hawaii":
         rest_list = all_restaurants[0][:]
@@ -177,7 +178,8 @@ def generate_restaurant(destination, all_restaurants):
 
 
 
-
+#this function tells the user what options have already been selected, and gives them a final opportunity to change one of the selections 
+#user will continue to have the option to change as many details as they want, until they confirm their selections
 def finalize_trip(destination, transport, entertainment, restaurant, destinations, all_transport, all_entertainment, all_restaurants):
     print("Congrats! We have completed generating your day trip. Now let's just confirm that this is the trip you wanted. ")
     print("The trip we have generated for you is: ")
@@ -189,7 +191,7 @@ def finalize_trip(destination, transport, entertainment, restaurant, destination
     while user_answer != "y":
         if user_answer == "n":
             change = input("You have opted not to confirm this trip. Which aspect of the trip would you like to change? Enter d to change the destination, t to change the transportation, r to change the restaurant, e to change the entertainment, or c to confirm the current selection. ").lower()
-            if change == "d":
+            if change == "d": #if the destination changes, then the other options will not make sense. So we need to redo all categories.
                 destination = generate_destination(destinations)
                 transport = generate_transport(destination, all_transport)
                 entertainment = generate_entertainment(destination, all_entertainment)
@@ -207,7 +209,7 @@ def finalize_trip(destination, transport, entertainment, restaurant, destination
             elif change == "c":
                 print(f"Prepare for your dream vacation to come alive! You will be arriving in {destination} by {transport}, where you will spend the day {entertainment}. You will end the evening dining in style at {restaurant}, a famous local restaurant. ")
             else:
-                print("Sorry, this is not a valid entry. Let's try this again.")
+                print("Sorry, this is not a valid entry. Let's try this again. ")
                 return finalize_trip(destination, transport, entertainment, restaurant, destinations, all_transport, all_entertainment, all_restaurants)
         elif user_answer != "n": 
             user_answer = input("Sorry, this is not a valid entry. Please enter y or n to indicate yes or no: ").lower()
@@ -220,8 +222,3 @@ def finalize_trip(destination, transport, entertainment, restaurant, destination
 simulation()
 
 
-#add comments for clarity
-#figure out why finalize trip function isn't having it work when you go through the list again
-#finish creating entertainment list
-#double check everything
-#double check grammar in quoted parts
