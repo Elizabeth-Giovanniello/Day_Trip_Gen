@@ -45,8 +45,8 @@ def simulation():
     bahamas_entertainment = ["scuba diving", "snorkeling", "taking a boat tour", "swimming with the pigs at Pig Beach", "perusing Versailles Gardens", "going bone fishing", "visiting the Forts of Nassau", "shopping at Port Lucaya Marketplace", "gambling at a casino", "visiting museums"]
     siberia_entertainment = ["visiting Lake Baikal", "hiking in the Altai Mountains", "freezing to death", "huddling over a fire for warmth", "being interrogated by the KGB", "shopping for fur"]
     tokyo_entertainment = ["visiting the Yayoi Kusama Museum", "exploring the Shinjuku Gyoen National Garden", "visiting the Senso-ji temple", "shopping at Tsukiji Market", "admiring the cherry blossoms at Nakameguro", "spectating a Sumo tournament at Ryogoku Kokugikan", "seeing origami at Origami Kaikan"]
-    venice_entertainment = ["nom1", "nom2", "nom3", "nom4"]
-    general_entertainment = ["seeing a movie", "attending a walking tour to explore the area", "going to all the tourist traps", "conversing with the locals"]
+    venice_entertainment = ["visiting St. Mark's Basilica", "touring the Grand Canal", "roaming the canals in a gondola while being serenaded by a world-class Italian opera singer", "seeing an Italian opera at Teatro La Fenice", "exploring Piazza San Marco", "touring Palazzo Ducale", "attending a glass blowing demonstration and glass factory tour", "visiting Correr Civic Museum"]
+    general_entertainment = ["seeing a movie", "seeing a show", "attending a walking tour to explore the area", "going to all the tourist traps", "conversing with the locals", "shopping for souvenirs", "going to museums", "observing the wildlife"]
 
     all_restaurants = [hawaii_restaurants, nyc_restaurants, yellowstone_restaurants, bahamas_restaurants, siberia_restaurants, tokyo_restaurants, venice_restaurants, general_restaurants]
     all_transport = [hawaii_transport, nyc_transport, yellowstone_transport, bahamas_transport, siberia_transport, tokyo_transport, venice_transport, transport_options]
